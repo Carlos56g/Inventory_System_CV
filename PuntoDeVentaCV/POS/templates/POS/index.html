@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Landing</title>
+</head>
+<body>
+    {% if product_list %}
+    <ul>
+    {% for product in product_list %}
+        <li>{{ product.product_name }} - {{product.quantity}} </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Products are available.</p>
+{% endif %}
+</body>
+</html>

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "POS.apps.PosConfig",
 ]
 
 MIDDLEWARE = [
@@ -73,10 +74,21 @@ WSGI_APPLICATION = 'VentaSiteCV.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#   }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tienda_db',    # Replace with your database name
+        'USER': 'shopAdmin',         # Replace with your MySQL username
+        'PASSWORD': 'AdminShopOwnerPass',     # Replace with your MySQL password
+        'HOST': 'localhost',             # Use 'localhost' if MySQL is on the same machine
+        'PORT': '3306',                  # Default MySQL port
     }
 }
 
