@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nuevo Producto</title>
+</head>
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+
+        <h3>Producto:</h3><input type="text" name="Producto"
+            value="{{ form.marca.value|default_if_none:'' }}">
+
+        <h3>Cantidad:</h3><input type="text" name="Cantidad"
+            value="{{ form.marca.value|default_if_none:'' }}">
+
+        <h3>Precio de Venta:</h3><input type="text" name="PVenta"
+            value="{{ form.marca.value|default_if_none:'' }}">
+
+        <h3>Precio de Compra:</h3><input type="text" name="PCompra"
+            value="{{ form.marca.value|default_if_none:'' }}">
+        
+        <h3>Descripcion:</h3><input type="text" name="Descripcion"
+            value="{{ form.marca.value|default_if_none:'' }}">
+        
+        
+        <h3>Distribuidor Disponibles:</h3>
+        {% for distribuidor in distribuidores_list %}
+            <input type="radio" name="IdDistribuidor" id="distribuidor{{forloop.counter}}" value="{{distribuidor.id}}">
+            <label for="distribuidor{{ forloop.counter}}">{{distribuidor.Distribuidor}}</label><br>
+        {% endfor %}
+
+        <h3>Categorias Disponibles:</h3>
+            {% for categoria in categorias_list %}
+                <input type="radio" name="IdCategoria" id="categoria{{forloop.counter}}" value="{{categoria.id}}">
+                <label for="categoria{{ forloop.counter}}">{{categoria.Categoria}}</label><br>
+            {% endfor %}
+
+        <h3>Marcas Disponibles:</h3>
+            {% for marca in marcas_list %}
+                <input type="radio" name="IdMarca" id="marca{{forloop.counter}}" value="{{marca.id}}">
+                <label for="marca{{ forloop.counter}}">{{marca.Marca}}</label><br>
+            {% endfor %}
+        
+        
+        <br><br>
+        <button type="submit">Agregar Producto</button>
+    </form>
+    <br><br>
+    <button type="button" onclick="window.location.href='{% url 'pos:index' %}'" >Regresar</button>
+</body>
+
+</html>

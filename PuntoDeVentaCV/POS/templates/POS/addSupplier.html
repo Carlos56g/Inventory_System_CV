@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nuevo Distribuidor</title>
+</head>
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+
+        <h3>Distribuidor:</h3><input type="text" name="Distribuidor"
+            value="{{ form.marca.value|default_if_none:'' }}">
+
+        <h3>Correo:</h3><input type="text" name="Correo"
+            value="{{ form.marca.value|default_if_none:'' }}">
+
+        <h3>Telefono:</h3><input type="text" name="Telefono"
+            value="{{ form.marca.value|default_if_none:'' }}">
+
+        <h3>Direccion:</h3><input type="text" name="Direccion"
+            value="{{ form.marca.value|default_if_none:'' }}">
+        
+        <h3>Descripcion:</h3><input type="text" name="Descripcion"
+            value="{{ form.marca.value|default_if_none:'' }}">
+
+        <br><br>
+        <button type="submit">Agregar Distribuidor</button>
+    </form>
+    <br><br>
+    <button type="button" onclick="window.location.href='{% url 'pos:index' %}'" >Regresar</button>
+</body>
+
+</html>

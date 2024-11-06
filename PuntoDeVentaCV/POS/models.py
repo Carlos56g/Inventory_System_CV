@@ -2,9 +2,25 @@ from django.db import models
 
 # Create your models here.
 
-class Product(models.Model):
-    product_name = models.CharField(max_length=200, verbose_name="Product Name")
-    quantity = models.IntegerField(default=0)
+class Distribuidor(models.Model):
+    Distribuidor=models.CharField(max_length=200)
+    Correo=models.CharField(max_length=200)
+    Telefono=models.CharField(max_length=20)
+    Descripcion=models.CharField(max_length=1000)
+    Direccion=models.CharField(max_length=200)
 
-    def __str__(self):
-        return f"{self.product_name} (Quantity: {self.quantity})"
+class Categoria(models.Model):
+    Categoria=models.CharField(max_length=200)
+
+class Marca(models.Model):
+    Marca=models.CharField(max_length=200)
+
+class Producto(models.Model):
+    Producto = models.CharField(max_length=200)
+    Cantidad = models.IntegerField(default=0)
+    PVenta = models.BooleanField(default=0,verbose_name="Precio de Venta")
+    PCompra = models.BooleanField(default=0,verbose_name="Precio de Compra")
+    Descripcion = models.CharField(max_length=1000)
+    IdDistribuidor=models.ForeignKey(Distribuidor, on_delete=models.CASCADE)
+    IdCategoria=models.ForeignKey(Categoria,on_delete=models.CASCADE)
+    IdMarca=models.ForeignKey(Marca, on_delete=models.CASCADE)

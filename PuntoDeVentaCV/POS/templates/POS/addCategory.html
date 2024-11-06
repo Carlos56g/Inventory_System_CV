@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nueva Categoria</title>
+</head>
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+
+        <h3>Nombre de la Categoria:</h3><input type="text" name="Categoria"
+            value="{{ form.categoria.value|default_if_none:'' }}">
+
+        <br><br>
+        <button type="submit">Agregar Categoria</button>
+    </form>
+    <br><br>
+    <button type="button" onclick="window.location.href='{% url 'pos:index' %}'" >Regresar</button>
+</body>
+
+</html>
