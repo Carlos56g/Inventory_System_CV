@@ -6,52 +6,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Nuevo Producto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/3672dac92b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <form method="post">
-        {% csrf_token %}
-
-        <h3>Producto:</h3><input type="text" name="Producto"
-            value="{{ form.marca.value|default_if_none:'' }}">
-
-        <h3>Cantidad:</h3><input type="text" name="Cantidad"
-            value="{{ form.marca.value|default_if_none:'' }}">
-
-        <h3>Precio de Venta:</h3><input type="text" name="PVenta"
-            value="{{ form.marca.value|default_if_none:'' }}">
-
-        <h3>Precio de Compra:</h3><input type="text" name="PCompra"
-            value="{{ form.marca.value|default_if_none:'' }}">
-        
-        <h3>Descripcion:</h3><input type="text" name="Descripcion"
-            value="{{ form.marca.value|default_if_none:'' }}">
-        
-        
-        <h3>Distribuidor Disponibles:</h3>
-        {% for distribuidor in distribuidores_list %}
-            <input type="radio" name="IdDistribuidor" id="distribuidor{{forloop.counter}}" value="{{distribuidor.id}}">
-            <label for="distribuidor{{ forloop.counter}}">{{distribuidor.Distribuidor}}</label><br>
-        {% endfor %}
-
-        <h3>Categorias Disponibles:</h3>
-            {% for categoria in categorias_list %}
-                <input type="radio" name="IdCategoria" id="categoria{{forloop.counter}}" value="{{categoria.id}}">
-                <label for="categoria{{ forloop.counter}}">{{categoria.Categoria}}</label><br>
-            {% endfor %}
-
-        <h3>Marcas Disponibles:</h3>
-            {% for marca in marcas_list %}
-                <input type="radio" name="IdMarca" id="marca{{forloop.counter}}" value="{{marca.id}}">
-                <label for="marca{{ forloop.counter}}">{{marca.Marca}}</label><br>
-            {% endfor %}
-        
-        
-        <br><br>
-        <button type="submit">Agregar Producto</button>
-    </form>
+    <div class="row">
+        <div class="card text-center text-bg-info mb-3">
+            <br>
+            <h3>Agregar Producto</h3><br>
+        </div>
+    </div>
+    <br>
+    <a onclick="window.location.href='{% url 'pos:index' %}'" style="padding-top: 10px; padding-left:10px;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
+    <div style="padding-left: 10px; padding-top: 20px;">
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label class="form-label">Nombre</label><br>
+                <input type="text" name="Producto" class="form-control" required
+                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+            </div>
+            <div>
+                <label class="form-label">Marca</label><br>
+                <select name="IdMarca" id="marca{{forloop.counter}}" class="form-control" required>
+                    <option value="" selected disabled>Seleccione la marca</option>
+                    {% for marca in marcas_list %}
+                    <option value="{{ marca.id }}">{{ marca.Marca }}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+            </div>
+            <div>
+                <label class="form-label">Cantidad</label><br>
+                <input type="number" name="Cantidad" class="form-control" required
+                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+            </div>
+            <div>
+                <label class="form-label">Precio de venta</label><br>
+                <input type="number" name="PVenta" class="form-control" required
+                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+            </div>
+            <div>
+                <label class="form-label">Precio de compra</label><br>
+                <input type="number" name="PCompra" class="form-control" required
+                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+            </div>
+            <div>
+                <label class="form-label">Descripcion</label><br>
+                <input type="text" name="Descripcion" class="form-control" required
+                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+            </div>
+            <div>
+                <label class="form-label">Distribuidor</label><br>
+                <select name="IdDistribuidor" id="distribuidor{{forloop.counter}}" class="form-control" required>
+                    <option value="" selected disabled>Seleccione el distribuidor</option>
+                    {% for distribuidor in distribuidores_list %}
+                    <option value="{{ distribuidor.id }}">{{ distribuidor.Distribuidor }}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+            </div>
+            <div>
+                <label class="form-label">Categoría</label><br>
+                <select name="IdCategoria" id="categoria{{forloop.counter}}" class="form-control" required>
+                    <option value="" selected disabled>Seleccione la categoría</option>
+                    {% for categoria in categorias_list %}
+                    <option value="{{ categoria.id }}">{{ categoria.Categoria }}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
     <br><br>
-    <button type="button" onclick="window.location.href='{% url 'pos:index' %}'" >Regresar</button>
 </body>
 
 </html>
