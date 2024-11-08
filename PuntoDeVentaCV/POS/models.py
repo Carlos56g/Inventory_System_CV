@@ -18,8 +18,8 @@ class Marca(models.Model):
 class Producto(models.Model):
     Producto = models.CharField(max_length=200)
     Cantidad = models.IntegerField(default=0)
-    PVenta = models.BooleanField(default=0,verbose_name="Precio de Venta")
-    PCompra = models.BooleanField(default=0,verbose_name="Precio de Compra")
+    PVenta = models.FloatField(default=0,verbose_name="Precio de Venta")
+    PCompra = models.FloatField(default=0,verbose_name="Precio de Compra")
     Descripcion = models.CharField(max_length=1000)
     IdDistribuidor=models.ForeignKey(Distribuidor, on_delete=models.CASCADE)
     IdCategoria=models.ForeignKey(Categoria,on_delete=models.CASCADE)

@@ -1,12 +1,13 @@
 #from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Producto
 from .models import Marca
 from .models import Categoria
 from .models import Distribuidor
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, DeleteView
-
+from django.views import generic
+from django.http import HttpResponseRedirect
 
 def index(request):
     product_list=Producto.objects.order_by("Producto").all()
@@ -66,3 +67,40 @@ class ProductCreateView(CreateView):
         producto=form.save(commit=False)
         producto.save()
         return super().form_valid(form)
+    
+
+class DetailView(generic.DetailView):
+    model=Producto
+    template_name="pos/detail.html"
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add the lists to the context
+        context["distribuidores_list"] = Distribuidor.objects.order_by("Distribuidor").all()
+        context["categorias_list"] = Categoria.objects.order_by("Categoria").all()
+        context["marcas_list"] = Marca.objects.order_by("Marca").all()
+        return context
+    
+
+def deleteProduct(request, productID):
+    Dproduct = get_object_or_404(Producto, pk=productID)
+    Dproduct.delete()
+    return HttpResponseRedirect(reverse('pos:index'))
+
+def putProduct(request, productID):
+    Dproduct = get_object_or_404(Producto, pk=productID)
+    Dproduct.Producto = request.POST.get('Producto')
+    Dproduct.Cantidad = request.POST.get('Cantidad')
+    Dproduct.PVenta = request.POST.get('PVenta')
+    Dproduct.PCompra = request.POST.get('PCompra')
+    Dproduct.Descripcion = request.POST.get('Descripcion')
+    Dproduct.IdCategoria.id = request.POST.get('IdCategoria')
+    Dproduct.IdDistribuidor.id = request.POST.get('IdDistribuidor')
+    Dproduct.IdMarca.id = request.POST.get('IdMarca')
+    Dproduct.save()
+    return HttpResponseRedirect(reverse('pos:detailProduct', args=(Dproduct.id,)))
+
+
+
+

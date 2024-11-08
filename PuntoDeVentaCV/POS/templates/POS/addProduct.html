@@ -26,45 +26,53 @@
             <div>
                 <label class="form-label">Nombre</label><br>
                 <input type="text" name="Producto" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                    value=''><br><br>
             </div>
             <div>
                 <label class="form-label">Marca</label><br>
                 <select name="IdMarca" id="marca{{forloop.counter}}" class="form-control" required>
                     <option value="" selected disabled>Seleccione la marca</option>
-                    {% for marca in marcas_list %}
-                    <option value="{{ marca.id }}">{{ marca.Marca }}</option>
-                    {% endfor %}
+                    {% if marcas_list %}
+                        {% for marca in marcas_list %}
+                            <option value="{{ marca.id }}">{{ marca.Marca }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option disabled>No hay Marcas Disponibles</option>
+                    {% endif %}
                 </select>
                 <br><br>
             </div>
             <div>
                 <label class="form-label">Cantidad</label><br>
                 <input type="number" name="Cantidad" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                    value=''><br><br>
             </div>
             <div>
                 <label class="form-label">Precio de venta</label><br>
                 <input type="number" name="PVenta" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                    value=''><br><br>
             </div>
             <div>
                 <label class="form-label">Precio de compra</label><br>
                 <input type="number" name="PCompra" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                    value=''><br><br>
             </div>
             <div>
                 <label class="form-label">Descripcion</label><br>
                 <input type="text" name="Descripcion" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                    value=''><br><br>
             </div>
             <div>
                 <label class="form-label">Distribuidor</label><br>
                 <select name="IdDistribuidor" id="distribuidor{{forloop.counter}}" class="form-control" required>
                     <option value="" selected disabled>Seleccione el distribuidor</option>
-                    {% for distribuidor in distribuidores_list %}
-                    <option value="{{ distribuidor.id }}">{{ distribuidor.Distribuidor }}</option>
-                    {% endfor %}
+                    {% if distribuidores_list %}
+                        {% for distribuidor in distribuidores_list %}
+                            <option value="{{ distribuidor.id }}">{{ distribuidor.Distribuidor }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option disabled>No hay Distribuidores Disponibles</option>
+                    {% endif %}
                 </select>
                 <br><br>
             </div>
@@ -72,9 +80,13 @@
                 <label class="form-label">Categoría</label><br>
                 <select name="IdCategoria" id="categoria{{forloop.counter}}" class="form-control" required>
                     <option value="" selected disabled>Seleccione la categoría</option>
-                    {% for categoria in categorias_list %}
-                    <option value="{{ categoria.id }}">{{ categoria.Categoria }}</option>
-                    {% endfor %}
+                    {% if categorias_list %}
+                        {% for categoria in categorias_list %}
+                            <option value="{{ categoria.id }}">{{ categoria.Categoria }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option disabled>No hay Categorias Disponibles</option>
+                    {% endif %}
                 </select>
                 <br><br>
             </div>
