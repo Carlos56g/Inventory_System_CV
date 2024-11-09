@@ -14,11 +14,12 @@
     <div class="row">
         <div class="card text-center text-bg-info mb-3">
             <br>
-            <h3>Punto de venta Productos</h3><br>
+            <h3>Productos</h3><br>
         </div>
     </div>
-    <a onclick="window.location.href='{% url 'pos:homePOS' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;">
+        <button type="button" class="btn btn-outline-primary"
+            onclick="window.location.href='{% url 'pos:homePOS' %}'"><a style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a></button>
         <button type="button" class="btn btn-outline-primary"
             onclick="window.location.href='{% url 'pos:newProduct' %}'">Agregar producto</button>
         <button type="button" class="btn btn-outline-primary"
@@ -39,6 +40,7 @@
                     <th scope="col" style="width: 350px">Nombre</th>
                     <th scope="col">Marca</th>
                     <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
                     <th scope="col">Distribuidor</th>
                     <th scope="col">Ver/Editar</th>
                     <th scope="col">Eliminar</th>
@@ -51,8 +53,9 @@
                     <td scope="row">{{ product.Producto }}</td>
                     <td scope="row">{{product.IdMarca.Marca}}</td>
                     <td scope="row">{{product.Cantidad}}</td>
+                    <td scope="row">${{product.PVenta}}</td>
                     <td scope="row">{{product.IdDistribuidor.Distribuidor}}</td>
-                    <td scope="row"><a href="{% url 'pos:detailProduct' product.id %}">></a></td>
+                    <td scope="row"><a href="{% url 'pos:detailProduct' product.id %}" class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"> </i></a></td>
                     <form action="{% url 'pos:deleteProduct' product.id %}" method="post">
                         {% csrf_token %}
                         <td scope="row"><button type="submit"

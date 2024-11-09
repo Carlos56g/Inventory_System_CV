@@ -98,6 +98,21 @@ def deleteProduct(request, productID):
     Dproduct.delete()
     return HttpResponseRedirect(reverse('pos:indexProduct'))
 
+def deleteBrand(request, brandID):
+    Dproduct = get_object_or_404(Producto, pk=brandID)
+    Dproduct.delete()
+    return HttpResponseRedirect(reverse('pos:indexBrand'))
+
+def deleteSupplier(request, brandID):
+    Dproduct = get_object_or_404(Producto, pk=brandID)
+    Dproduct.delete()
+    return HttpResponseRedirect(reverse('pos:indexSupplier'))
+
+def deleteCategory(request, brandID):
+    Dproduct = get_object_or_404(Producto, pk=brandID)
+    Dproduct.delete()
+    return HttpResponseRedirect(reverse('pos:indexCategory'))
+
 def putProduct(request, productID):
     Dproduct = get_object_or_404(Producto, pk=productID)
     Dproduct.Producto = request.POST.get('Producto')
@@ -109,7 +124,7 @@ def putProduct(request, productID):
     Dproduct.IdDistribuidor.id = request.POST.get('IdDistribuidor')
     Dproduct.IdMarca.id = request.POST.get('IdMarca')
     Dproduct.save()
-    return HttpResponseRedirect(reverse('pos:detailProduct', args=(Dproduct.id,)))
+    return HttpResponseRedirect(reverse('pos:indexProduct'))
 
 
 def indexPOS(request):

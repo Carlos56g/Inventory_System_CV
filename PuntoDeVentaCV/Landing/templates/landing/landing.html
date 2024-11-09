@@ -12,15 +12,17 @@
 
 <body>
     <div class="row">
-        <div class="card text-center text-bg-info mb-3">
+        <div class="card text-center text-bg-info mb-3" >
             <br>
             <h3>Bienvenido a tu Tienda!</h3><br>
         </div>
     </div>
 
-    <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;">
+    <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="width: 40%; height: 480px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;">
         <button type="button" class="btn btn-outline-primary"
             onclick="window.location.href='{% url 'landing:logIn' %}'">Iniciar Sesion</button>
+        <br>
         <button type="button" class="btn btn-outline-primary"
             onclick="window.location.href='{% url 'landing:signIn' %}'">Crear Cuenta</button>
     </div>

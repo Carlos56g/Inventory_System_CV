@@ -17,8 +17,9 @@
             <h3>Punto de venta Distribuidores</h3><br>
         </div>
     </div>
-    <a onclick="window.location.href='{% url 'pos:homePOS' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;">
+        <button type="button" class="btn btn-outline-primary"
+            onclick="window.location.href='{% url 'pos:homePOS' %}'"><a style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a></button>
         <button type="button" class="btn btn-outline-primary"
             onclick="window.location.href='{% url 'pos:newProduct' %}'">Agregar producto</button>
         <button type="button" class="btn btn-outline-primary"
@@ -52,11 +53,11 @@
                     <td scope="row">{{supplier.Correo}}</td>
                     <td scope="row">{{supplier.Telefono}}</td>
                     <td scope="row">{{supplier.Direccion}}</td>
-                    <td scope="row"><a href="{% url 'pos:detailProduct' product.id %}">></a></td>
-                    <form action="{% url 'pos:deleteProduct' product.id %}" method="post">
+                    <td scope="row"><button class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"> </i></button></td>
+                    <form action="{% url 'pos:deleteSupplier' supplier.id %}" method="post">
                         {% csrf_token %}
                         <td scope="row"><button type="submit"
-                                onclick="return confirmDelete('{{ product.Producto }}', '{{ product.id }}')"
+                                onclick="return confirmDelete('{{ supplier.Distribuidor }}', '{{ supplier.id }}')"
                                 class="btn btn-small btn-danger"><i class="fa-regular fa-trash-can"> </i> </button></td>
                     </form>
                 </tr>

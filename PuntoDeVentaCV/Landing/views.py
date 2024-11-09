@@ -18,7 +18,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            messages.success(request, f'Account created for {user.correo}!')
+            messages.success(request, f'Account created for {user.username}!')
             return redirect(reverse_lazy("landing:logIn"))  # Redirect to login page after registration
         else:
             messages.success(request, "Comprueba los datos de la cuenta")
