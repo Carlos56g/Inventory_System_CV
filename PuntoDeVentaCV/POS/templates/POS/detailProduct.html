@@ -21,7 +21,7 @@
     <br>
     <a onclick="window.location.href='{% url 'pos:indexProduct' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div style="padding-left: 10px; padding-top: 20px;">
-        <form action="{% url 'pos:putProduct' producto.id %}" method="post">
+        <form action="{% url 'pos:putProduct' producto.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div>
                 <label class="form-label">Nombre</label><br>
@@ -75,11 +75,15 @@
                 <br><br>
             </div>
             <div>
-                <label class="form-label">Imagen</label><br>
                 <img src="{{ producto.Imagen.url }}" alt="Product Image"/>
+                <br>
+                <br>
+                <input type="file" name="Imagen" accept="image/*" id="id_Imagen">
                 <br><br>
             </div>
-            <button type="submit" class="btn btn-primary">Confirmar Cambios</button>
+            <button type="submit" value="eliminarImagen" name="action" class="btn btn-primary">Eliminar Imagen</button>
+            <br><br>
+            <button type="submit" value="cambiar" name="action" class="btn btn-primary">Confirmar Cambios</button>
         </form>
     </div>
     <br><br>

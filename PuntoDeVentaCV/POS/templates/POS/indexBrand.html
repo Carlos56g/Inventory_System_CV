@@ -47,7 +47,7 @@
                 <tr>
                     <td> </td>
                     <td scope="row">{{ brand.Marca }}</td>
-                    <td scope="row"><button class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"> </i></button></td>
+                    <td scope="row"><a href="{% url 'pos:detailBrand' brand.id %}" class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"> </i></a></td>
                     <form action="{% url 'pos:deleteBrand' brand.id %}" method="post">
                         {% csrf_token %}
                         <td scope="row"><button type="submit"
@@ -61,7 +61,7 @@
         </table>
     </div>
     {% else %}
-    <p>No Products are available.</p>
+    <p>No hay Marcas disponibles.</p>
     {% endif %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -70,7 +70,7 @@
 
     <script>
         function confirmDelete(elementToDelete, ID) {
-            return confirm("Estas Seguro de Eliminar el Producto: " + elementToDelete + " - " + ID)
+            return confirm("Estas Seguro de Eliminar la Marca: " + elementToDelete + " - " + ID)
         };
     </script>
 

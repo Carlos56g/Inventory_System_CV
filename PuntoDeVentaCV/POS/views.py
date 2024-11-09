@@ -80,7 +80,7 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
     
 
-class DetailView(generic.DetailView):
+class DetailProductView(generic.DetailView):
     model=Producto
     template_name="pos/detailProduct.html"
 
@@ -92,6 +92,18 @@ class DetailView(generic.DetailView):
         context["categorias_list"] = Categoria.objects.order_by("Categoria").all()
         context["marcas_list"] = Marca.objects.order_by("Marca").all()
         return context
+    
+class DetailBrandView(generic.DetailView):
+    model=Marca
+    template_name="pos/detailBrand.html"
+
+class DetailSupplierView(generic.DetailView):
+    model=Distribuidor
+    template_name="pos/detailSupplier.html"
+
+class DetailCategoryView(generic.DetailView):
+    model=Categoria
+    template_name="pos/detailCategory.html"
     
 
 def deleteProduct(request, productID):
@@ -115,17 +127,50 @@ def deleteCategory(request, brandID):
     return HttpResponseRedirect(reverse('pos:indexCategory'))
 
 def putProduct(request, productID):
+    selection=request.POST.get('action')
     Dproduct = get_object_or_404(Producto, pk=productID)
-    Dproduct.Producto = request.POST.get('Producto')
-    Dproduct.Cantidad = request.POST.get('Cantidad')
-    Dproduct.PVenta = request.POST.get('PVenta')
-    Dproduct.PCompra = request.POST.get('PCompra')
-    Dproduct.Descripcion = request.POST.get('Descripcion')
-    Dproduct.IdCategoria.id = request.POST.get('IdCategoria')
-    Dproduct.IdDistribuidor.id = request.POST.get('IdDistribuidor')
-    Dproduct.IdMarca.id = request.POST.get('IdMarca')
-    Dproduct.save()
-    return HttpResponseRedirect(reverse('pos:indexProduct'))
+    if (selection=="cambiar"):
+        Dproduct.Producto = request.POST.get('Producto')
+        Dproduct.Cantidad = request.POST.get('Cantidad')
+        Dproduct.PVenta = request.POST.get('PVenta')
+        Dproduct.PCompra = request.POST.get('PCompra')
+        Dproduct.Descripcion = request.POST.get('Descripcion')
+        Dproduct.IdCategoria = Categoria.objects.get(id=request.POST.get('IdCategoria'))
+        #Dproduct.IdCategoria.id = request.POST.get('IdCategoria')
+        Dproduct.IdDistribuidor = Distribuidor.objects.get(id=request.POST.get('IdDistribuidor'))
+        #Dproduct.IdDistribuidor.id = request.POST.get('IdDistribuidor')
+        Dproduct.IdMarca = Marca.objects.get(id=request.POST.get('IdMarca'))
+        #Dproduct.IdMarca.id = request.POST.get('IdMarca')
+        if (request.FILES.get("Imagen")):
+            Dproduct.Imagen = request.FILES.get("Imagen")
+        Dproduct.save()
+    if (selection=="eliminarImagen"):
+        Dproduct.Imagen='images/default.png'
+        Dproduct.save()
+    return HttpResponseRedirect(reverse('pos:detailProduct', args=[Dproduct.id]))
+
+def putBrand(request, brandID):
+    Dbrand = get_object_or_404(Marca, pk=brandID)
+    Dbrand.Marca = request.POST.get('Marca')
+    Dbrand.save()
+    return HttpResponseRedirect(reverse('pos:detailBrand', args=[Dbrand.id]))
+
+def putCategory(request, categoryID):
+    DCategory = get_object_or_404(Categoria, pk=categoryID)
+    DCategory.Categoria = request.POST.get('Categoria')
+    DCategory.save()
+    return HttpResponseRedirect(reverse('pos:detailCategory', args=[DCategory.id]))
+
+def putSupplier(request, supplierID):
+    Dsupplier = get_object_or_404(Distribuidor, pk=supplierID)
+    Dsupplier.Distribuidor = request.POST.get('Distribuidor')
+    Dsupplier.Correo = request.POST.get('Correo')
+    Dsupplier.Telefono = request.POST.get('Telefono')
+    Dsupplier.Descripcion = request.POST.get('Descripcion')
+    Dsupplier.Direccion = request.POST.get('Direccion')
+    Dsupplier.save()
+    return HttpResponseRedirect(reverse('pos:detailSupplier', args=[Dsupplier.id]))
+
 
 
 def indexPOS(request):

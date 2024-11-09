@@ -53,7 +53,7 @@
                     <td scope="row">{{supplier.Correo}}</td>
                     <td scope="row">{{supplier.Telefono}}</td>
                     <td scope="row">{{supplier.Direccion}}</td>
-                    <td scope="row"><button class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"> </i></button></td>
+                    <td scope="row"><a href="{% url 'pos:detailSupplier' supplier.id %}" class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"> </i></a></td>
                     <form action="{% url 'pos:deleteSupplier' supplier.id %}" method="post">
                         {% csrf_token %}
                         <td scope="row"><button type="submit"
