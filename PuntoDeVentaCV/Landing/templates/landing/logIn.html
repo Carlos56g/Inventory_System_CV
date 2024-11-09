@@ -1,0 +1,15 @@
+<h2>Login</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label class="form-label">correo</label><br>
+        <input type="text" name="username" class="form-control" required><br><br>
+    </div>
+    
+        <label class="form-label">password</label><br>
+        <input type="text" name="password" class="form-control" required><br><br>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Iniciar Sesion!</button>
+</form>

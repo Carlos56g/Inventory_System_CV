@@ -19,35 +19,29 @@
         </div>
     </div>
     <br>
-    <a onclick="window.location.href='{% url 'pos:index' %}'" style="padding-top: 10px; padding-left:10px;"><i
-            class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
+    <a onclick="window.location.href='{% url 'pos:indexProduct' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div style="padding-left: 10px; padding-top: 20px;">
         <form method="post">
             {% csrf_token %}
             <div>
                 <label class="form-label">Nombre</label><br>
-                <input type="text" name="Distribuidor" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                <input type="text" name="Distribuidor" class="form-control" required><br><br>
             </div>
             <div>
                 <label class="form-label">Correo</label><br>
-                <input type="text" name="Correo" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                <input type="text" name="Correo" class="form-control" required><br><br>
             </div>
             <div>
                 <label class="form-label">Telefono</label><br>
-                <input type="number" name="Telefono" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                <input type="number" name="Telefono" class="form-control" required><br><br>
             </div>
             <div>
                 <label class="form-label">Direccion</label><br>
-                <input type="text" name="Direccion" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                <input type="text" name="Direccion" class="form-control" required><br><br>
             </div>
             <div>
                 <label class="form-label">Descripcion</label><br>
-                <input type="text" name="Descripcion" class="form-control" required
-                    value="{{ form.marca.value|default_if_none:'' }}"><br><br>
+                <input type="text" name="Descripcion" class="form-control" required><br><br>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

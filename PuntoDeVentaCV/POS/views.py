@@ -9,17 +9,27 @@ from django.views.generic.edit import CreateView, DeleteView
 from django.views import generic
 from django.http import HttpResponseRedirect
 
-def index(request):
+def indexProduct(request):
     product_list=Producto.objects.order_by("Producto").all()
-    return render(request, 'POS/index.html', {'product_list': product_list})
-    #output = ", ".join([p.product_name for p in product_list])
-    #return HttpResponse(output)
+    return render(request, 'POS/indexProduct.html', {'product_list': product_list})
+
+def indexBrand(request):
+    brand_list=Marca.objects.order_by("Marca").all()
+    return render(request, 'POS/indexBrand.html', {'brand_list': brand_list})
+
+def indexCategory(request):
+    category_list=Categoria.objects.order_by("Categoria").all()
+    return render(request, 'POS/indexCategory.html', {'category_list': category_list})
+
+def indexSupplier(request):
+    supplier_list=Distribuidor.objects.order_by("Distribuidor").all()
+    return render(request, 'POS/indexSupplier.html', {'supplier_list': supplier_list})
 
 class BrandCreateView(CreateView):
     model = Marca
     fields = ["Marca"]
     template_name = "POS/addBrand.html"
-    success_url=reverse_lazy("pos:index")
+    success_url=reverse_lazy("pos:indexProduct")
 
     def form_valid(self, form):
         marca=form.save(commit=False)
@@ -30,18 +40,18 @@ class CategoryCreateView(CreateView):
     model = Categoria
     fields = ["Categoria"]
     template_name = "POS/addCategory.html"
-    success_url=reverse_lazy("pos:index")
+    success_url=reverse_lazy("pos:indexProduct")
 
     def form_valid(self, form):
-        cagoria=form.save(commit=False)
-        cagoria.save()
+        categoria=form.save(commit=False)
+        categoria.save()
         return super().form_valid(form)
     
 class SupplierCreateView(CreateView):
     model = Distribuidor
     fields = ["Distribuidor","Correo","Telefono","Descripcion","Direccion"]
     template_name = "POS/addSupplier.html"
-    success_url=reverse_lazy("pos:index")
+    success_url=reverse_lazy("pos:indexProduct")
 
     def form_valid(self, form):
         distribuidor=form.save(commit=False)
@@ -52,7 +62,7 @@ class ProductCreateView(CreateView):
     model = Producto
     fields = ["Producto","Cantidad","PVenta","PCompra","Descripcion","IdDistribuidor","IdCategoria","IdMarca"]
     template_name = "POS/addProduct.html"
-    success_url=reverse_lazy("pos:index")
+    success_url=reverse_lazy("pos:indexProduct")
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -71,7 +81,7 @@ class ProductCreateView(CreateView):
 
 class DetailView(generic.DetailView):
     model=Producto
-    template_name="pos/detail.html"
+    template_name="pos/detailProduct.html"
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -86,7 +96,7 @@ class DetailView(generic.DetailView):
 def deleteProduct(request, productID):
     Dproduct = get_object_or_404(Producto, pk=productID)
     Dproduct.delete()
-    return HttpResponseRedirect(reverse('pos:index'))
+    return HttpResponseRedirect(reverse('pos:indexProduct'))
 
 def putProduct(request, productID):
     Dproduct = get_object_or_404(Producto, pk=productID)
@@ -102,5 +112,7 @@ def putProduct(request, productID):
     return HttpResponseRedirect(reverse('pos:detailProduct', args=(Dproduct.id,)))
 
 
-
+def indexPOS(request):
+    current_user = request.user
+    return render(request, 'POS/indexPOS.html',{'user': current_user})
 

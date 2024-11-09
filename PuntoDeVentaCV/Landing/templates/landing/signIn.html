@@ -1,0 +1,27 @@
+
+<h2>Register</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label class="form-label">correo</label><br>
+        <input type="text" name="username" class="form-control" required><br><br>
+    </div>
+    <div>
+        <label class="form-label">nombre</label><br>
+        <input type="text" name="nombre" class="form-control" required><br><br>
+    </div>
+    <div>
+        <label class="form-label">apellido</label><br>
+        <input type="text" name="apellido" class="form-control" required><br><br>
+    </div>
+    <div>
+        <label class="form-label">password1</label><br>
+        <input type="text" name="password1" class="form-control" required><br><br>
+    </div>
+    <div>
+        <label class="form-label">password2</label><br>
+        <input type="text" name="password2" class="form-control" required><br><br>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear Usuario!</button>
+</form>

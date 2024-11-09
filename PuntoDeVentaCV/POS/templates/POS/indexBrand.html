@@ -14,10 +14,10 @@
     <div class="row">
         <div class="card text-center text-bg-info mb-3">
             <br>
-            <h3>Punto de venta</h3><br>
+            <h3>Punto de venta Productos</h3><br>
         </div>
     </div>
-
+    <a onclick="window.location.href='{% url 'pos:homePOS' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;">
         <button type="button" class="btn btn-outline-primary"
             onclick="window.location.href='{% url 'pos:newProduct' %}'">Agregar producto</button>

@@ -19,8 +19,7 @@
         </div>
     </div>
     <br>
-    <a onclick="window.location.href='{% url 'pos:index' %}'" style="padding-top: 10px; padding-left:10px;"><i
-            class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
+    <a onclick="window.location.href='{% url 'pos:indexProduct' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div style="padding-left: 10px; padding-top: 20px;">
         <button>Activar los campos de Datos</button>
         <form action="{% url 'pos:putProduct' producto.id %}" method="post">
