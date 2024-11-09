@@ -60,7 +60,7 @@ class SupplierCreateView(CreateView):
     
 class ProductCreateView(CreateView):
     model = Producto
-    fields = ["Producto","Cantidad","PVenta","PCompra","Descripcion","IdDistribuidor","IdCategoria","IdMarca"]
+    fields = ["Producto","Cantidad","PVenta","PCompra","Descripcion","IdDistribuidor","IdCategoria","IdMarca","Imagen"]
     template_name = "POS/addProduct.html"
     success_url=reverse_lazy("pos:indexProduct")
 
@@ -75,6 +75,7 @@ class ProductCreateView(CreateView):
 
     def form_valid(self, form):
         producto=form.save(commit=False)
+        producto.Imagen = self.request.FILES.get("Imagen")
         producto.save()
         return super().form_valid(form)
     

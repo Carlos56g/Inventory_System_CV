@@ -24,3 +24,4 @@ class Producto(models.Model):
     IdDistribuidor=models.ForeignKey(Distribuidor, on_delete=models.CASCADE)
     IdCategoria=models.ForeignKey(Categoria,on_delete=models.CASCADE)
     IdMarca=models.ForeignKey(Marca, on_delete=models.CASCADE)
+    Imagen = models.ImageField(upload_to='images/', default='images/default.png')

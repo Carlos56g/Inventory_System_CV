@@ -21,7 +21,7 @@
     <br>
     <a onclick="window.location.href='{% url 'pos:homePOS' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a>
     <div style="padding-left: 10px; padding-top: 20px;">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div>
                 <label class="form-label">Nombre</label><br>
@@ -88,6 +88,11 @@
                         <option disabled>No hay Categorias Disponibles</option>
                     {% endif %}
                 </select>
+                <br><br>
+            </div>
+            <div>
+                <label class="form-label">Imagen</label><br>
+                <input type="file" name="Imagen" accept="image/*" id="id_Imagen">
                 <br><br>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
