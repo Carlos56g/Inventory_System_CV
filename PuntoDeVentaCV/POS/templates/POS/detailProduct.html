@@ -1,5 +1,6 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'pos/styles.css' %}">
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
@@ -21,44 +22,63 @@
     <br>
     <a onclick="window.location.href='{% url 'pos:indexProduct' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div style="padding-left: 10px; padding-top: 20px;">
-        <form action="{% url 'pos:putProduct' producto.id %}" method="post" enctype="multipart/form-data">
+        <button class="btn btn-small btn-warning" onclick="enableInput()"><i class="fa-regular fa-pen-to-square"> </i></button>
+        <br><br>
+        <form action="{% url 'pos:putProduct' producto.id %}" method="post" enctype="multipart/form-data" id="detalles">
             {% csrf_token %}
-            <div>
-                <label class="form-label">Nombre</label><br>
-                <input type="text" name="Producto" class="form-control" required value="{{ producto.Producto}}"><br><br>
-            </div>
-            <div>
-                <label class="form-label">Marca</label><br>
-                <select name="IdMarca" id="marca{{forloop.counter}}" class="form-control" required>
-                    {% for marca in marcas_list %}
-                    <option value="{{ marca.id }}" {% if marca.id == producto.IdMarca.id %}selected{% endif %} >
-                        {{ marca.Marca }}
-                    </option>
-                    {% endfor %}
-                </select>
-                <br><br>
-            </div>
-            <div>
-                <label class="form-label">Cantidad</label><br>
-                <input type="number" name="Cantidad" class="form-control" required
-                    value="{{producto.Cantidad}}"><br><br>
+            <div class="topDetails">
+                <div class="principalDetails">
+                    <div>
+                        <label class="form-label">Nombre</label><br>
+                        <input type="text" name="Producto" class="form-control" required value="{{ producto.Producto}}" disabled><br><br>
+                    </div>
+                    <div>
+                        <label class="form-label">Marca</label><br>
+                        <select name="IdMarca" id="marca{{forloop.counter}}" class="form-control" required disabled>
+                            {% for marca in marcas_list %}
+                            <option value="{{ marca.id }}" {% if marca.id == producto.IdMarca.id %}selected{% endif %} >
+                                {{ marca.Marca }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <br><br>
+                    </div>
+                    <div>
+                        <label class="form-label">Cantidad</label><br>
+                        <input type="number" name="Cantidad" class="form-control" required
+                            value="{{producto.Cantidad}}" disabled><br><br>
+                    </div>
+                </div>
+                <div class="imageSpace">
+                    <div class="productImage">
+                        <img src="{{ producto.Imagen.url }}" alt="Product Image"/>
+                    </div>
+                    <div class="imagebuttons">
+                        <div class="buttonImage">
+                            <button type="submit" onclick="return confirmDelete()" value="eliminarImagen" name="action" class="btn btn-primary" disabled>Eliminar Imagen</button>
+                        </div>
+                        <div class="inputFile">
+                            <input type="file" name="Imagen" accept="image/*" id="id_Imagen"  disabled>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div>
                 <label class="form-label">Precio de venta</label><br>
-                <input type="number" name="PVenta" class="form-control" required value="{{producto.PVenta}}"><br><br>
+                <input type="number" name="PVenta" class="form-control" required value="{{producto.PVenta}}" disabled><br><br>
             </div>
             <div>
                 <label class="form-label">Precio de compra</label><br>
-                <input type="number" name="PCompra" class="form-control" required value="{{producto.PCompra}}"><br><br>
+                <input type="number" name="PCompra" class="form-control" required value="{{producto.PCompra}}" disabled><br><br>
             </div>
             <div>
                 <label class="form-label">Descripcion</label><br>
                 <input type="text" name="Descripcion" class="form-control" required
-                    value="{{ producto.Descripcion}}"><br><br>
+                    value="{{ producto.Descripcion}}" disabled><br><br>
             </div>
             <div>
                 <label class="form-label">Distribuidor</label><br>
-                <select name="IdDistribuidor" id="distribuidor{{forloop.counter}}" class="form-control" required>
+                <select name="IdDistribuidor" id="distribuidor{{forloop.counter}}" class="form-control" required disabled>
                     {% for distribuidor in distribuidores_list %}
                     <option value="{{ distribuidor.id }}" {% if distribuidor.id == producto.IdDistribuidor.id %}selected{% endif %} >{{ distribuidor.Distribuidor }}</option>
                     {% endfor %}
@@ -67,26 +87,34 @@
             </div>
             <div>
                 <label class="form-label">Categoría</label><br>
-                <select name="IdCategoria" id="categoria{{forloop.counter}}" class="form-control" required>
+                <select name="IdCategoria" id="categoria{{forloop.counter}}" class="form-control" required disabled>
                     {% for categoria in categorias_list %}
                     <option value="{{ categoria.id }}" {% if categoria.id == producto.IdCategoria.id %}selected{% endif %}>{{ categoria.Categoria }}</option>
                     {% endfor %}
                 </select>
                 <br><br>
             </div>
-            <div>
-                <img src="{{ producto.Imagen.url }}" alt="Product Image"/>
-                <br>
-                <br>
-                <input type="file" name="Imagen" accept="image/*" id="id_Imagen">
-                <br><br>
-            </div>
-            <button type="submit" value="eliminarImagen" name="action" class="btn btn-primary">Eliminar Imagen</button>
-            <br><br>
-            <button type="submit" value="cambiar" name="action" class="btn btn-primary">Confirmar Cambios</button>
+            <button type="submit" value="cambiar" name="action" class="btn btn-primary" disabled>Confirmar Cambios</button>
         </form>
     </div>
-    <br><br>
 </body>
 
 </html>
+
+<script>
+    function confirmDelete() {
+        return confirm("Estas seguro de eliminar la imagen?")
+    };
+</script>
+
+<script>
+    function enableInput() {
+        var form = document.getElementById("detalles");
+    var elements = form.elements; // Get all form elements
+
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].disabled = false; // Disable each element
+    }
+  }
+
+  </script>

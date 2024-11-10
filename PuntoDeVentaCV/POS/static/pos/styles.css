@@ -1,0 +1,45 @@
+.topDetails{
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.principalDetails{
+    width: 60%;
+    height: auto;
+}
+
+.imageSpace{
+    width: 40vw;
+    position: relative;
+}
+
+.productImage{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 90%;
+    width: 100%;
+    justify-content: center;
+
+}
+
+.productImage img{
+    max-width: 100%;
+    max-height: 90%;
+}
+
+.imagebuttons{
+    position: absolute;
+    bottom:0;
+    right:0;
+    display: flex;
+}
+.inputFile{
+    margin: 10px;
+    margin-top: 15px;
+}
+
+.buttonImage{
+    margin: 10px;
+}

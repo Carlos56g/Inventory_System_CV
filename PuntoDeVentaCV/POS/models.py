@@ -1,5 +1,5 @@
 from django.db import models
-
+from Landing.models import CustomUser
 # Create your models here.
 
 class Distribuidor(models.Model):
@@ -8,12 +8,15 @@ class Distribuidor(models.Model):
     Telefono=models.CharField(max_length=20)
     Descripcion=models.CharField(max_length=1000)
     Direccion=models.CharField(max_length=200)
+    Usuario=models.ForeignKey(CustomUser,on_delete=models.CASCADE,default=1)
 
 class Categoria(models.Model):
     Categoria=models.CharField(max_length=200)
+    Usuario=models.ForeignKey(CustomUser,on_delete=models.CASCADE,default=1)
 
 class Marca(models.Model):
     Marca=models.CharField(max_length=200)
+    Usuario=models.ForeignKey(CustomUser,on_delete=models.CASCADE,default=1)
 
 class Producto(models.Model):
     Producto = models.CharField(max_length=200)
@@ -25,3 +28,4 @@ class Producto(models.Model):
     IdCategoria=models.ForeignKey(Categoria,on_delete=models.CASCADE)
     IdMarca=models.ForeignKey(Marca, on_delete=models.CASCADE)
     Imagen = models.ImageField(upload_to='images/', default='images/default.png')
+    Usuario=models.ForeignKey(CustomUser,on_delete=models.CASCADE,default=1)

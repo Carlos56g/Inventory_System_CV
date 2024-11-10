@@ -24,6 +24,7 @@ def register(request):
             messages.success(request, "Comprueba los datos de la cuenta")
     else:
         form = CustomUserCreationForm()
+    
     return render(request, 'landing/signIn.html', {'form': form})
 
 

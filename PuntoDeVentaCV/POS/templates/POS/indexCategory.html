@@ -61,7 +61,7 @@
         </table>
     </div>
     {% else %}
-    <p>No Products are available.</p>
+    <p>No hay categorias disponibles</p>
     {% endif %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -70,7 +70,7 @@
 
     <script>
         function confirmDelete(elementToDelete, ID) {
-            return confirm("Estas Seguro de Eliminar el Producto: " + elementToDelete + " - " + ID)
+            return confirm("Estas seguro de eliminar la categoría:\n" + elementToDelete  + "\nSe eliminarán TODOS los productos que contegan esta categoría")
         };
     </script>
 

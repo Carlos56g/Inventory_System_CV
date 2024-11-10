@@ -20,6 +20,7 @@
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="nombre">
+                <a href="{% url 'landing:logIn'%}"><div id="loginHelp" class="form-text">Ya tienes una Cuenta?</div></a>
             </div>
             <div class="mb-3">
                 <label class="form-label">Apellido</label>
@@ -28,7 +29,16 @@
             <div class="mb-3">
                 <label class="form-label">Correo electrónico</label>
                 <input type="email" class="form-control" name="username">
+                {% if not form.username.errors %}
                 <div id="emailHelp" class="form-text">No compartiremos tu información con nadie.</div>
+                {% endif %}
+                <div id="emailError" class="form-text">
+                    {% if form.username.errors %}
+                        {% for error in form.username.errors%}
+                            {{error}}
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Contraseña</label>
@@ -37,33 +47,18 @@
             <div class="mb-3">
                 <label class="form-label">Confirma tu contraseña</label>
                 <input type="password" class="form-control" name="password2">
+                <div id="passError" class="form-text">
+                    {% if form.password2.errors %}
+                        {% for error in form.password2.errors %}
+                            {{ error }}<br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
+
+            <br>
             <button type="submit" class="btn btn-primary">Registrate</button>
         </form>
     </div>
-</body>
 
-<!--form method="post">
-    {% csrf_token %}
-    <div>
-        <label class="form-label">correo</label><br>
-        <input type="text" name="username" class="form-control" required><br><br>
-    </div>
-    <div>
-        <label class="form-label">nombre</label><br>
-        <input type="text" name="nombre" class="form-control" required><br><br>
-    </div>
-    <div>
-        <label class="form-label">apellido</label><br>
-        <input type="text" name="apellido" class="form-control" required><br><br>
-    </div>
-    <div>
-        <label class="form-label">password1</label><br>
-        <input type="text" name="password1" class="form-control" required><br><br>
-    </div>
-    <div>
-        <label class="form-label">password2</label><br>
-        <input type="text" name="password2" class="form-control" required><br><br>
-    </div>
-    <button type="submit" class="btn btn-primary">Crear Usuario!</button>
-</form-->
+</body>

@@ -20,26 +20,18 @@
             <div class="mb-3">
                 <label class="form-label">Correo electrónico</label>
                 <input type="email" class="form-control" name="username" >
-                <div class="form-text">Usa el correo con el cual te registraste.</div>
+                <a href="{% url 'landing:signIn'%}"><div id="loginHelp" class="form-text">No tienes una Cuenta?</div></a>
             </div>
             <div class="mb-3">
                 <label class="form-label">Contraseña</label>
                 <input type="password" class="form-control" name="password">
+                {% if form.errors %}
+                <div id="loginError" class="form-text">Comprueba las Credenciales</div>
+                {% endif %}
             </div>
+
+
             <button type="submit" class="btn btn-primary">Inicia sesión</button>
         </form>
     </div>
 </body>
-<!--form method="post">
-    {% csrf_token %}
-    <div>
-        <label class="form-label">correo</label><br>
-        <input type="text" name="username" class="form-control" required><br><br>
-    </div>
-    
-        <label class="form-label">password</label><br>
-        <input type="text" name="password" class="form-control" required><br><br>
-    </div>
-   
-    <button type="submit" class="btn btn-primary">Iniciar Sesion!</button>
-</form-->

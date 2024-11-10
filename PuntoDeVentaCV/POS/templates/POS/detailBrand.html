@@ -21,11 +21,13 @@
     <br>
     <a onclick="window.location.href='{% url 'pos:indexBrand' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div style="padding-left: 10px; padding-top: 20px;">
-        <form action="{% url 'pos:putBrand' marca.id %}" method="post">
+        <button class="btn btn-small btn-warning" onclick="enableInput()"><i class="fa-regular fa-pen-to-square"> </i></button>
+        <br><br>
+        <form action="{% url 'pos:putBrand' marca.id %}" method="post" id="detalles">
             {% csrf_token %}
             <div>
                 <label class="form-label">Marca</label><br>
-                <input type="text" name="Marca" class="form-control" required value="{{ marca.Marca}}"><br><br>
+                <input type="text" name="Marca" class="form-control" required value="{{ marca.Marca}}" disabled><br><br>
             </div>
             <button type="submit" name="action" class="btn btn-primary">Confirmar Cambios</button>
         </form>
@@ -34,3 +36,15 @@
 </body>
 
 </html>
+
+<script>
+    function enableInput() {
+        var form = document.getElementById("detalles");
+    var elements = form.elements; // Get all form elements
+
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].disabled = false; // Disable each element
+    }
+  }
+
+  </script>
