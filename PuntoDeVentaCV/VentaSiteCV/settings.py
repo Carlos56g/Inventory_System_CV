@@ -26,9 +26,6 @@ SECRET_KEY = 'django-insecure-4@z(+@(z99dncij5%3q!g#dgz1k+u*8!z_zp&btilt7xm7!umx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "POS.apps.PosConfig",
+    "POS.apps.POSConfig",
     "Landing.apps.LandingConfig"
 ]
 
@@ -74,16 +71,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'VentaSiteCV.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#   }
-#}
-
+#PARA WINDOWS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -94,6 +83,21 @@ DATABASES = {
         'PORT': '3306',                  # Default MySQL port
     }
 }
+ALLOWED_HOSTS = []
+
+
+#PARA DOCKER
+"""DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tienda_db',    # Replace with your database name
+        'USER': 'root',         # Replace with your MySQL username
+        'PASSWORD': 'my-secret-pw',     # Replace with your MySQL password
+        'HOST': 'db',             # Use 'localhost' if MySQL is on the same machine
+        'PORT': '3306',                  # Default MySQL port
+    }
+}
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']"""
 
 
 # Password validation

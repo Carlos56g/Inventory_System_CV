@@ -20,29 +20,29 @@
     </div>
     <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;">
         <button type="button" class="btn btn-primary"
-            onclick="window.location.href='{% url 'pos:homePOS' %}'"><a style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a></button>
+            onclick="window.location.href='{% url 'POS:homePOS' %}'"><a style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a></button>
         <button type="button" class="btn btn-primary"
-            onclick="window.location.href='{% url 'pos:newProduct' %}'">Agregar producto</button>
+            onclick="window.location.href='{% url 'POS:newProduct' %}'">Agregar producto</button>
         <button type="button" class="btn btn-primary"
-            onclick="window.location.href='{% url 'pos:newBrand' %}'">Agregar
+            onclick="window.location.href='{% url 'POS:newBrand' %}'">Agregar
             marca</button>
         <button type="button" class="btn btn-primary"
-            onclick="window.location.href='{% url 'pos:newCategory' %}'">Agregar categoría</button>
+            onclick="window.location.href='{% url 'POS:newCategory' %}'">Agregar categoría</button>
         <button type="button" class="btn btn-primary"
-            onclick="window.location.href='{% url 'pos:newSupplier' %}'">Agregar distribuidor</button>
+            onclick="window.location.href='{% url 'POS:newSupplier' %}'">Agregar distribuidor</button>
     </div>
     <br><br><br>
     <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%; height: 180px;">
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:indexProduct' %}'">Productos</button>
+            onclick="window.location.href='{% url 'POS:indexProduct' %}'">Productos</button>
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:indexBrand' %}'">Marcas</button>
+            onclick="window.location.href='{% url 'POS:indexBrand' %}'">Marcas</button>
     </div>
     <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;height: 180px;">
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:indexSupplier' %}'">Distribuidores</button>
+            onclick="window.location.href='{% url 'POS:indexSupplier' %}'">Distribuidores</button>
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:indexCategory' %}'">Categorías</button>
+            onclick="window.location.href='{% url 'POS:indexCategory' %}'">Categorías</button>
     </div>
     <br><br>
     <button type="button" class="btn btn-primary"><a onclick="window.location.href='{% url 'landing:logOut' %}'" style="padding-top: 10px; cursor: pointer;">LogOut</a>

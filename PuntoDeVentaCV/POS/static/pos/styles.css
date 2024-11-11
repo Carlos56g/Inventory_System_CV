@@ -11,11 +11,11 @@
 
 .imageSpace{
     width: 40vw;
-    position: relative;
+    POSition: relative;
 }
 
 .productImage{
-    position: absolute;
+    POSition: absolute;
     display: flex;
     align-items: center;
     height: 90%;
@@ -30,7 +30,7 @@
 }
 
 .imagebuttons{
-    position: absolute;
+    POSition: absolute;
     bottom:0;
     right:0;
     display: flex;

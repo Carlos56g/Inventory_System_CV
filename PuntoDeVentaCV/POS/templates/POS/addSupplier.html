@@ -19,9 +19,9 @@
         </div>
     </div>
     <br>
-    <a onclick="window.location.href='{% url 'pos:homePOS' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a>
+    <a onclick="window.location.href='{% url 'POS:homePOS' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a>
     <div style="padding-left: 10px; padding-top: 20px;">
-        <form method="post">
+        <form method="POSt">
             {% csrf_token %}
             <div>
                 <label class="form-label">Nombre</label><br>

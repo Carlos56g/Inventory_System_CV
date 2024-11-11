@@ -19,16 +19,16 @@
     </div>
     <div class="btn-group" role="group" aria-label="Basic outlined example" style="width: 100%;">
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:homePOS' %}'"><a style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a></button>
+            onclick="window.location.href='{% url 'POS:homePOS' %}'"><a style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-house" style="color: #74C0FC; font-size:2em"></i></a></button>
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:newProduct' %}'">Agregar producto</button>
+            onclick="window.location.href='{% url 'POS:newProduct' %}'">Agregar producto</button>
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:newBrand' %}'">Agregar
+            onclick="window.location.href='{% url 'POS:newBrand' %}'">Agregar
             marca</button>
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:newCategory' %}'">Agregar categoría</button>
+            onclick="window.location.href='{% url 'POS:newCategory' %}'">Agregar categoría</button>
         <button type="button" class="btn btn-outline-primary"
-            onclick="window.location.href='{% url 'pos:newSupplier' %}'">Agregar distribuidor</button>
+            onclick="window.location.href='{% url 'POS:newSupplier' %}'">Agregar distribuidor</button>
     </div>
     <br><br>
     {% if category_list %}
@@ -47,8 +47,8 @@
                 <tr>
                     <td> </td>
                     <td scope="row">{{ category.Categoria }}</td>
-                    <td scope="row"><a href="{% url 'pos:detailCategory' category.id %}" class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"> </i></a></td>
-                    <form action="{% url 'pos:deleteCategory' category.id %}" method="post">
+                    <td scope="row"><a href="{% url 'POS:detailCategory' category.id %}" class="btn btn-small btn-warning"><i class="fa-regular fa-pen-to-square"> </i></a></td>
+                    <form action="{% url 'POS:deleteCategory' category.id %}" method="POSt">
                         {% csrf_token %}
                         <td scope="row"><button type="submit"
                                 onclick="return confirmDelete('{{ category.Categoria }}', '{{ category.id }}')"

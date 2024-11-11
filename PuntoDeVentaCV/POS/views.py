@@ -37,7 +37,7 @@ class BrandCreateView(CreateView):
     model = Marca
     fields = ["Marca"]
     template_name = "POS/addBrand.html"
-    success_url=reverse_lazy("pos:indexBrand")
+    success_url=reverse_lazy("POS:indexBrand")
 
     def form_valid(self, form):
         marca=form.save(commit=False)
@@ -50,7 +50,7 @@ class CategoryCreateView(CreateView):
     model = Categoria
     fields = ["Categoria"]
     template_name = "POS/addCategory.html"
-    success_url=reverse_lazy("pos:indexCategory")
+    success_url=reverse_lazy("POS:indexCategory")
     def form_valid(self, form):
         categoria=form.save(commit=False)
         current_user = self.request.user
@@ -62,7 +62,7 @@ class SupplierCreateView(CreateView):
     model = Distribuidor
     fields = ["Distribuidor","Correo","Telefono","Descripcion","Direccion"]
     template_name = "POS/addSupplier.html"
-    success_url=reverse_lazy("pos:indexSupplier")
+    success_url=reverse_lazy("POS:indexSupplier")
 
     def form_valid(self, form):
         distribuidor=form.save(commit=False)
@@ -75,7 +75,7 @@ class ProductCreateView(CreateView):
     model = Producto
     fields = ["Producto","Cantidad","PVenta","PCompra","Descripcion","IdDistribuidor","IdCategoria","IdMarca","Imagen"]
     template_name = "POS/addProduct.html"
-    success_url=reverse_lazy("pos:indexProduct")
+    success_url=reverse_lazy("POS:indexProduct")
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -101,7 +101,7 @@ class ProductCreateView(CreateView):
     
 class DetailProductView(generic.DetailView):
     model=Producto
-    template_name="pos/detailProduct.html"
+    template_name="POS/detailProduct.html"
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -115,35 +115,35 @@ class DetailProductView(generic.DetailView):
     
 class DetailBrandView(generic.DetailView):
     model=Marca
-    template_name="pos/detailBrand.html"
+    template_name="POS/detailBrand.html"
 
 class DetailSupplierView(generic.DetailView):
     model=Distribuidor
-    template_name="pos/detailSupplier.html"
+    template_name="POS/detailSupplier.html"
 
 class DetailCategoryView(generic.DetailView):
     model=Categoria
-    template_name="pos/detailCategory.html"
+    template_name="POS/detailCategory.html"
     
 def deleteProduct(request, productID):
     Dproduct = get_object_or_404(Producto, pk=productID)
     Dproduct.delete()
-    return HttpResponseRedirect(reverse('pos:indexProduct'))
+    return HttpResponseRedirect(reverse('POS:indexProduct'))
 
 def deleteBrand(request, brandID):
     Dproduct = get_object_or_404(Marca, pk=brandID)
     Dproduct.delete()
-    return HttpResponseRedirect(reverse('pos:indexBrand'))
+    return HttpResponseRedirect(reverse('POS:indexBrand'))
 
 def deleteSupplier(request, supplierID):
     Dproduct = get_object_or_404(Distribuidor, pk=supplierID)
     Dproduct.delete()
-    return HttpResponseRedirect(reverse('pos:indexSupplier'))
+    return HttpResponseRedirect(reverse('POS:indexSupplier'))
 
 def deleteCategory(request,categoryID):
     Dproduct = get_object_or_404(Categoria, pk=categoryID)
     Dproduct.delete()
-    return HttpResponseRedirect(reverse('pos:indexCategory'))
+    return HttpResponseRedirect(reverse('POS:indexCategory'))
 
 def putProduct(request, productID):
     selection=request.POST.get('action')
@@ -166,19 +166,19 @@ def putProduct(request, productID):
     if (selection=="eliminarImagen"):
         Dproduct.Imagen='images/default.png'
         Dproduct.save()
-    return HttpResponseRedirect(reverse('pos:detailProduct', args=[Dproduct.id]))
+    return HttpResponseRedirect(reverse('POS:detailProduct', args=[Dproduct.id]))
 
 def putBrand(request, brandID):
     Dbrand = get_object_or_404(Marca, pk=brandID)
     Dbrand.Marca = request.POST.get('Marca')
     Dbrand.save()
-    return HttpResponseRedirect(reverse('pos:detailBrand', args=[Dbrand.id]))
+    return HttpResponseRedirect(reverse('POS:detailBrand', args=[Dbrand.id]))
 
 def putCategory(request, categoryID):
     DCategory = get_object_or_404(Categoria, pk=categoryID)
     DCategory.Categoria = request.POST.get('Categoria')
     DCategory.save()
-    return HttpResponseRedirect(reverse('pos:detailCategory', args=[DCategory.id]))
+    return HttpResponseRedirect(reverse('POS:detailCategory', args=[DCategory.id]))
 
 def putSupplier(request, supplierID):
     Dsupplier = get_object_or_404(Distribuidor, pk=supplierID)
@@ -188,5 +188,5 @@ def putSupplier(request, supplierID):
     Dsupplier.Descripcion = request.POST.get('Descripcion')
     Dsupplier.Direccion = request.POST.get('Direccion')
     Dsupplier.save()
-    return HttpResponseRedirect(reverse('pos:detailSupplier', args=[Dsupplier.id]))
+    return HttpResponseRedirect(reverse('POS:detailSupplier', args=[Dsupplier.id]))
 

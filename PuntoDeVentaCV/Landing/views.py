@@ -31,7 +31,7 @@ def register(request):
 class LoginUserView(FormView):
     form_class = AuthenticationForm
     template_name = "landing/logIn.html"
-    success_url = reverse_lazy("pos:homePOS")
+    success_url = reverse_lazy("POS:homePOS")
     def form_valid(self, form):
         usuario = form.cleaned_data.get('username')
         contra = form.cleaned_data.get('password')

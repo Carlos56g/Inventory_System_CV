@@ -19,12 +19,12 @@
         </div>
     </div>
     <br>
-    <a onclick="window.location.href='{% url 'pos:indexCategory' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
+    <a onclick="window.location.href='{% url 'POS:indexCategory' %}'" style="padding-top: 10px; padding-left:10px; cursor: pointer;"><i class="fa-solid fa-circle-left" style="font-size:2em"></i></a>
     <div style="padding-left: 10px; padding-top: 20px;">
         <button class="btn btn-small btn-warning" onclick="enableInput()"><i class="fa-regular fa-pen-to-square"> </i></button>
         <br>
         <br>
-        <form action="{% url 'pos:putCategory' categoria.id %}" method="post" id="detalles">
+        <form action="{% url 'POS:putCategory' categoria.id %}" method="POSt" id="detalles">
             {% csrf_token %}
             <div>
                 <label class="form-label">Categoria</label><br>
