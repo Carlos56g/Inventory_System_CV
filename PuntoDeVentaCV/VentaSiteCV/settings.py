@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'VentaSiteCV.wsgi.application'
 
 
 #PARA WINDOWS
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tienda_db',    # Replace with your database name
@@ -83,11 +83,11 @@ DATABASES = {
         'PORT': '3306',                  # Default MySQL port
     }
 }
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []"""
 
 
 #PARA DOCKER
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tienda_db',    # Replace with your database name
@@ -97,7 +97,7 @@ ALLOWED_HOSTS = []
         'PORT': '3306',                  # Default MySQL port
     }
 }
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']"""
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
 
 
 # Password validation
