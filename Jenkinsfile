@@ -1,6 +1,14 @@
 pipeline {
     agent any
-    
+    stages {
+        stage('Clean Checkout') {
+            steps {
+                // Elimina el directorio de trabajo para garantizar un repositorio limpio
+                deleteDir() 
+                checkout scm  // Realiza un checkout limpio del repositorio
+            }
+        }
+            
     environment {
         GITHUB_REPO = 'https://github.com/Carlos56g/PIALenguajesModernos.git' // Reemplaza con tu URL de GitHub
         DOCKER_COMPOSE_FILE = 'PuntoDeVentaCV/docker-compose.yml'
