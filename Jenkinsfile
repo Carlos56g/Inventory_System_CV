@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Detener y eliminar los contenedores antiguos antes de crear los nuevos
-                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes --remove-orphans'
+                    sh 'docker compose -f ${DOCKER_COMPOSE_FILE} down --volumes --remove-orphans'
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     // Construir y ejecutar los contenedores usando docker-compose
-                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} up --build -d'
+                    sh 'docker compose -f ${DOCKER_COMPOSE_FILE} up --build -d'
                 }
             }
         }
