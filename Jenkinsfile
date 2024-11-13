@@ -94,10 +94,10 @@ pipeline {
                     }
                 }
             }
-        stage('Restart Django Container') {
+        stage('Restart Container') {
             steps {
                 script {
-                    // Reinicia el Contenedor de Django
+                    // Reiniciar el contenedor por nombre
                     sh 'docker restart django-container'
                 }
             }
