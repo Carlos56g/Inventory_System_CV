@@ -94,6 +94,7 @@ pipeline {
                     }
                 }
             }
+        }
         stage('Restart Container') {
             steps {
                 script {
