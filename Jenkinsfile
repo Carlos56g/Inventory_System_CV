@@ -50,7 +50,7 @@ pipeline {
                 script {
                     dir("${DOCKER_COMPOSE_DIR}") {
                         def retryCount = 0
-                        def maxRetries = 10
+                        def maxRetries = 5
                         def success = false
                         
                         while (retryCount < maxRetries && !success) {
